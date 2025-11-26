@@ -1,0 +1,19 @@
+{
+    "name": "phoenix/app",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Spectrum-Dark",
+            "email": "24phoenix99@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.11",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

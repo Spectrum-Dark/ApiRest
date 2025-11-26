@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Detecta automáticamente la carpeta actual
+RewriteBase /App/public/
+
+# Forzar que Apache pase el Authorization a PHP
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
+
+# Permite archivos y carpetas reales
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirige todo a index.php
+RewriteRule ^ index.php [QSA,L]

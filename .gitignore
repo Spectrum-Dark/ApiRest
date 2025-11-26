@@ -1,0 +1,10 @@
+#Archivos y carpetas ignorados
+# Lo esencial para tu proyecto actual
+vendor/
+.env
+!.env.example
+
+# IDEs (opcional pero muy recomendable)
+.idea/
+.vscode/
+.DS_Store
