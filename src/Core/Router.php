@@ -68,7 +68,7 @@ class Router
         }
 
         http_response_code(404);
-        echo json_encode(['error' => 'Not Found']);
+        echo json_encode(['error' => 'Ruta no encontrada']);
     }
 
     private function handleRoute(Middleware $route, array $params = [])
@@ -102,7 +102,7 @@ class Router
 
             if (!class_exists($class)) {
                 http_response_code(500);
-                echo json_encode(['error' => 'Controller not found']);
+                echo json_encode(['error' => 'Controlador no encontrado']);
                 return;
             }
 

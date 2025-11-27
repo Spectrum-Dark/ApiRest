@@ -7,26 +7,18 @@ use App\Controllers\UserController;
 
 $router = new Router();
 
-/* Rutas publicas ============================================================================================== */
 
 $router->get('/', function () {
-    echo json_encode(['ok' => true, 'message' => 'API funcionando']);
+    echo json_encode(['success' => true, 'message' => 'API funcionando']);
 });
 
-//* Ruta para el login de usuarios //
+/* Rutas de usuarios  */
 $router->post('/users/login', [UserController::class, 'login']);
-
-//* Ruta para el registro de usuarios //
 $router->post('/users/register', [UserController::class, 'register']);
-
-/* Fin de rutas publicas ======================================================================================= */
-
-
-/* Rutas privadas ============================================================================================== */
-
-//* Ruta para obtener la informacion del usuario autenticado //
-$router->get('/users/me', [UserController::class, 'me'])->middleware('auth');
+$router->get('/users/all', [UserController::class, 'getAll'])->middleware('auth');
+$router->get('/users/profile', [UserController::class, 'infomation'])->middleware('auth');
+$router->put('/users/profile/update/', [UserController::class, 'update'])->middleware('auth');
+$router->delete('/users/profile/delete/', [UserController::class, 'delete'])->middleware('auth');
 
 
-/* Fin rutas privadas ========================================================================================== */
 return $router;

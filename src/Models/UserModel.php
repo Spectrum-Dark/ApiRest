@@ -34,7 +34,6 @@ class UserModel
                 "success" => true,
                 "error" => null
             ];
-
         } catch (\mysqli_sql_exception $e) {
 
             return [
@@ -44,9 +43,17 @@ class UserModel
         }
     }
 
+    /* Obtenemos todos los usuarios */
+
+    public function getAllUsers()
+    {
+        $SQL = "CALL GetAllUsers()";
+
+        $Result = $this->MySql->query($SQL);
+        return $Result->fetch_all(MYSQLI_ASSOC);
+    }
 
     /* Obtenemos el usuario por su correo electrónico */
-
     public function getUserByEmail(array $Data)
     {
         /* Preparamos la consula */
@@ -62,5 +69,33 @@ class UserModel
 
         /* Retornamos el resultado */
         return $Result->fetch_assoc();
+    }
+
+    /* Actualizamos un usuario */
+    public function updateUser(array $Data)
+    {
+        $SQL = "CALL UpdateUser(?, ?, ?, ?, ?)";
+        $Params = [
+            $Data['id'],
+            $Data['username'],
+            $Data['email'],
+            $Data['role'],
+            $Data['password']
+        ];
+
+        $Result = $this->MySql->query($SQL, $Params);
+        return $Result;
+    }
+
+    /* Eliminamos un usuario */
+    public function deleteUser(array $Data)
+    {
+        $SQL = "CALL DeleteUser(?)";
+        $Params = [
+            $Data['id']
+        ];
+
+        $Result = $this->MySql->query($SQL, $Params);
+        return $Result;
     }
 }
