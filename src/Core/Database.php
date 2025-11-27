@@ -6,12 +6,14 @@ use mysqli;
 use Exception;
 use mysqli_result;
 
+use App\Config\Properties as Props;
+
 class Database
 {
-    private string $host = 'localhost';
-    private string $username = 'root';
-    private string $password = '';
-    private string $database = 'educacion';
+    private string $host = Props::DB_HOST;
+    private string $username = Props::DB_USERNAME;
+    private string $password = Props::DB_PASSWORD;
+    private string $database = Props::DB_NAME;
     private ?mysqli $connection = null;
 
     private static ?Database $instance = null;

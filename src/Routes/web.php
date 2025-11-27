@@ -1,7 +1,6 @@
 <?php
 
 use App\Core\Router;
-use App\Middlewares\AuthMiddleware;
 
 /* Controladores */
 use App\Controllers\UserController;
@@ -14,15 +13,19 @@ $router->get('/', function () {
     echo json_encode(['ok' => true, 'message' => 'API funcionando']);
 });
 
+//* Ruta para el login de usuarios //
 $router->post('/users/login', [UserController::class, 'login']);
+
+//* Ruta para el registro de usuarios //
+$router->post('/users/register', [UserController::class, 'register']);
 
 /* Fin de rutas publicas ======================================================================================= */
 
 
 /* Rutas privadas ============================================================================================== */
 
+//* Ruta para obtener la informacion del usuario autenticado //
 $router->get('/users/me', [UserController::class, 'me'])->middleware('auth');
-$router->post('/users/show/{id}', [UserController::class, 'show'])->middleware('auth');
 
 
 /* Fin rutas privadas ========================================================================================== */
