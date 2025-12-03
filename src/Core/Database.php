@@ -93,10 +93,19 @@ class Database
         return $result ?: true;
     }
 
-
     public function escape(string $value): string
     {
         return $this->connection->real_escape_string($value);
+    }
+
+    public function consumeAllResults(): void
+    {
+        while ($this->connection->more_results()) {
+            $this->connection->next_result();
+            if ($result = $this->connection->store_result()) {
+                $result->free();
+            }
+        }
     }
 
     public function __destruct()

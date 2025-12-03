@@ -248,7 +248,7 @@ class AttendanceController
         }
 
         /* Cambiamos el orden de la fecha a año dia mes */
-        $Data['date'] = date('Y-d-m', strtotime($Data['date']));
+        $Data['date'] = date('Y-m-d', strtotime($Data['date']));
 
         $result = $this->model->ShowAttendance($Data);
         return $result ? ResponseHelper::success(200, $result) : ResponseHelper::error(500, 'Error al obtener la asistencia');

@@ -6,16 +6,14 @@ use App\Core\Router;
 use App\Controllers\UserController;
 use App\Controllers\AttendanceController;
 use App\Controllers\StudentsController;
+use App\Controllers\DashboardController;
 
 
 $router = new Router();
 
 
 /* Ruta principal */
-$router->get('/', fn() => print json_encode([
-    'success' => true,
-    'message' => 'API funcionando'
-]));
+$router->get('/app/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 /* ============================================
    RUTAS DE USUARIOS
@@ -75,7 +73,7 @@ $router->delete("$edu/student/delete",[$ctrl_student, 'deleteStudent'])->middlew
 $router->get("$edu/class/assigned", [$ctrl_edu, 'getClassesAssigned'])->middleware('auth');
 $router->get("$edu/class/students/{id}", [$ctrl_student, 'getStudentsByAssignment'])->middleware('auth');
 $router->post("$edu/class/attendance/insert", [$ctrl_edu, 'insert_Attendance'])->middleware('auth');
-$router->post("$edu/class/attendance/show", [$ctrl_edu, 'show_Attendance'])->middleware('auth');
+$router->post("$edu/class/attendance/list", [$ctrl_edu, 'show_Attendance'])->middleware('auth');
 $router->put("$edu/class/attendance/update", [$ctrl_edu, 'update_Attendance'])->middleware('auth');
 
 
