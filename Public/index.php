@@ -22,6 +22,7 @@ $router = new Router();
 
 // Definimos las rutas aquí
 $router->post('/App/Login', [UserController::class, 'login']);
+$router->post('/App/Register', [UserController::class, 'register']);
 
 // Ejecutamos el router
 $router->run();
