@@ -19,3 +19,5 @@ INSERT INTO users (correo, usuario, acceso) VALUES("adminexample@gmail.com", "ad
 UPDATE users SET (correo, usuario, acceso) WHERE id = "";
 
 DELETE FROM users WHERE id = "";
+
+/* Fin Crud de usuarios */

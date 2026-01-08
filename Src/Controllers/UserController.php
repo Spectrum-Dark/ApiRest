@@ -50,11 +50,14 @@ class UserController
 
         if (!isset($Data['correo']) || !isset($Data['usuario']) || !isset($Data['acceso'])) {
             http_response_code(400);
-            return json_encode(["Error " => "Datos incompletos"]);
+            return json_encode([
+                "error " => "Datos incompletos",
+                "data" => $Data
+            ]);
         }
 
         $Response = $this->UserModel->Register($Data);
-        
+
         if ($Response) {
             return json_encode([
                 "message" => "Usuario registrado"
