@@ -24,7 +24,7 @@ class UserController
         /* Validamos si existen los datos */
         if (!isset($Data['correo']) || !isset($Data['acceso'])) {
             http_response_code(400);
-            return json_encode(["error" => "Datos incompletos"]);
+            return json_encode(["error" => "Datos incompletos", "data" => $Data]);
         }
 
         /* Mandamos los parametros */

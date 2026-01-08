@@ -17,12 +17,18 @@ require_once __DIR__ . '/../autoload.php';
 
 use App\Router;
 use App\Controllers\UserController;
+use App\Controllers\ProductsController;
 
 $router = new Router();
 
 // Definimos las rutas aquí
 $router->post('/App/Login', [UserController::class, 'login']);
 $router->post('/App/Register', [UserController::class, 'register']);
+
+$router->get('/App/Products/All', [ProductsController::class, 'getproducts']);
+$router->post('/App/Products/Insert', [ProductsController::class, 'insertproduct']);
+$router->put('/App/Products/Update', [ProductsController::class, 'updateproduct']);
+$router->delete('/App/Products/Delete', [ProductsController::class, 'deleteproduct']);
 
 // Ejecutamos el router
 $router->run();
