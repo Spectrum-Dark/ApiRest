@@ -18,12 +18,18 @@ require_once __DIR__ . '/../autoload.php';
 use App\Router;
 use App\Controllers\UserController;
 use App\Controllers\ProductsController;
+use App\Controllers\BackupController;
 
 $router = new Router();
 
 // Definimos las rutas aquí
 $router->post('/App/Login', [UserController::class, 'login']);
 $router->post('/App/Register', [UserController::class, 'register']);
+
+// Ruta para crear respaldo
+$router->get('/backup', [BackupController::class, 'create']);
+$router->get('/restore', [BackupController::class, 'restore']);
+$router->post('/restore/upload', [BackupController::class, 'restoreFromUpload']);
 
 $router->get('/App/Products/All', [ProductsController::class, 'getproducts']);
 $router->post('/App/Products/Insert', [ProductsController::class, 'insertproduct']);

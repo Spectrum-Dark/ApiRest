@@ -30,6 +30,16 @@ class Database
         return self::$instance;
     }
 
+    public static function getDbConfig(): array
+    {
+        return [
+            'host' => 'localhost',
+            'username' => 'root',
+            'password' => '',
+            'database' => 'inventrack'
+        ];
+    }
+
     private function openConnection(): void
     {
         $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
@@ -46,6 +56,12 @@ class Database
     {
         return $this->connection;
     }
+
+    // Getters para acceder a la configuración de forma segura
+    public function getHost(): string { return $this->host; }
+    public function getUsername(): string { return $this->username; }
+    public function getPassword(): string { return $this->password; }
+    public function getDatabase(): string { return $this->database; }
 
     public function query(string $sql, array $params = []): \mysqli_result|bool
     {

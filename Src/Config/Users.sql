@@ -1,4 +1,4 @@
--- Active: 1761759741520@@127.0.0.1@3306@inventrack
+-- Active: 1765075332953@@127.0.0.1@3306@inventrack
 CREATE DATABASE inventrack;
 
 USE inventrack;
